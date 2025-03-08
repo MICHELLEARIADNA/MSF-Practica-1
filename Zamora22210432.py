@@ -38,19 +38,18 @@ signal = ['Escalon', 'Impulso', 'Rampa','Sin']
 # Componentes del circuito RLC y función de transferencia
 R = 1E3
 L = 10E-6
-C = 220E-6
+C = 1E-6
 num = [C*L*R,C*R**2+L,R]
 den = [3*C*L*R,5*C*R**2+L,2*R]
 sys = ctrl.tf(num,den)
 print(sys)
 
 # Componentes del controlador
-Rr = 0.5050
-Re = 5.8052
-Cr = 220E-6
-ki = 782.689924920275
-kp = 0.0869949043835581
-numPI = [Rr*Cr+1, 1]
+
+Cr = 1E-6
+ki = 782.68992
+Re = 1/(ki*Cr) ;
+numPI = [1]
 denPI = [Re*Cr, 0]
 PI = ctrl.tf(numPI, denPI)
 print(PI)
